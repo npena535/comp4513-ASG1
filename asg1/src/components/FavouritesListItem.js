@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { AiFillHeart } from "react-icons/ai";
 
@@ -5,9 +6,10 @@ import { Link } from 'react-router-dom';
 import Heart from '../animated-components/Heart';
 import { useNavigate } from 'react-router-dom';
 
-const FavouritesListItem = (props) => {
 
+const FavouritesListItem = (props) => {
   const navigate = useNavigate();
+
 
   // function handleRemoveFromFavourites() {
   //   props.removeFavourite(props.movie);
@@ -25,11 +27,18 @@ const FavouritesListItem = (props) => {
     
     }
 
+
   const handleViewMovie = () => {
     navigate(`/movieDetails?id=${props.movie.id}`);
   };
 
+  const generateErrorImg = (e) => {
+    e.onerror = null;
+    e.currentTarget.src = `https://via.placeholder.com/185x278/0f7ca7/000000?text=${props.movie.title}`;
+  };
+
   return (
+
     <div className="flex items-center py-4 justify-center" >
       <div className='group justify-start m-3 relative transition duration-200 hover:scale-[110%]'>
         
@@ -42,15 +51,12 @@ const FavouritesListItem = (props) => {
 
           </div>
         {/* </div> */}
+
       </div>
 
-{/* <Heart movie={props.movie} removeFavourite={props.removeFavourite}/> selected={true} */}
-
+      {/* <Heart movie={props.movie} removeFavourite={props.removeFavourite}/> selected={true} */}
     </div>
-
-
   );
-
-}
+};
 
 export default FavouritesListItem;

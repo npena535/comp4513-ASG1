@@ -2,20 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-html, body {
-    height: 100%;
+/* References */
+/* Modal Animation is done through CSS and the code was gathered from this site => https://reactcommunity.org/react-modal/styles/transitions/ */
+html,
+body {
+  height: 100%;
 }
 
-.Toastify__toast-container {
-
-    top: 50px;
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 1000ms ease-in-out;
 }
 
-.debug, .debug *{
-    box-shadow: inset 0px 0px 0px 1px #f00;
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
 }
 
 
@@ -92,3 +96,5 @@ html, body {
         transform: rotate(360deg);
     }
 }
+
+

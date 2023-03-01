@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import ReactModal from 'react-modal';
+import ReactModal from "react-modal";
 import Navbar from "./Navbar";
 import { AiOutlineLeft } from "react-icons/ai";
 import MovieDetailsExtra from "./movie-details-components/MovieDetailsExtra";
@@ -26,8 +26,9 @@ const MovieDetails = (props) => {
   const [ratings, setRatings] = useState(false);
   const [searchParms, setSearchParms] = useSearchParams();
   const [movie, setMovie] = useState(null);
-
+  const [voted, setVoted] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+
 
   const [favourites, setFavourites] = useState(JSON.parse(localStorage.getItem('favourites')));
   const [isFavourite, setIsFavourite] = useState(false);
@@ -100,16 +101,14 @@ const MovieDetails = (props) => {
 
 
 
+
   const setModalOpenTrue = () => {
-    console.log('trues');
     setModalOpen(true);
-  }
+  };
 
   const setModalOpenFalse = () => {
-    console.log('false');
     setModalOpen(false);
-  }
-
+  };
 
   const handleOverview = () => {
     setOverview(true);
@@ -132,15 +131,11 @@ const MovieDetails = (props) => {
   const generateErrorImg = (e) => {
     e.onerror = null;
     e.currentTarget.src = `https://via.placeholder.com/342x513/0f7ca7/000000?text=${movie.title}`;
-  }
-
-  const [voted, setVoted] = useState(false);
+  };
 
   const handleSetVoted = () => {
     setVoted(true);
-  }
-
-
+  };
 
   useEffect(() => {
     // get movie id from url
@@ -166,8 +161,7 @@ const MovieDetails = (props) => {
         <AiOutlineLeft />
       </div>
 
-      {movie &&
-
+      {movie && (
         <div>
           <img
             src={"https:image.tmdb.org/t/p/original" + movie.backdrop}
@@ -184,7 +178,17 @@ const MovieDetails = (props) => {
                 alt="poster"
                 onError={generateErrorImg}
               />
-              <ReactModal isOpen={modalOpen} onRequestClose={setModalOpenFalse} ariaHideApp={false} className='bg-black-900 w-[500px] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]'>
+              <ReactModal
+                style={{
+                  overlay: {
+                    backgroundColor: "rgba(0,0,0,0.9)",
+                  },
+                }}
+                isOpen={modalOpen}
+                onRequestClose={setModalOpenFalse}
+                ariaHideApp={false}
+                className="bg-black-900 w-[500px] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
+              >
                 <img
                   className="shadow-xl shadow-gray-900 rounded-md"
                   src={"https://image.tmdb.org/t/p/w500" + movie.poster}
@@ -193,7 +197,7 @@ const MovieDetails = (props) => {
                 />
               </ReactModal>
             </div>
-            <div className="mx-[50px] mt-[100px] flex flex-col gap-6 text-white">
+            <div className="mx-[50px] mt-[80px] flex flex-col gap-6 text-white">
               <div className="flex flex-row items-center">
                 <p className="md:text-5xl sm:text-4xl text-xl font-bold">
                   {movie.title}
@@ -210,19 +214,20 @@ const MovieDetails = (props) => {
               <div className="flex flex-row gap-5">
                 {movie.details.genres.map((genre, index) => {
                   return (
-                    <p key={index} className="border-solid text-center px-[10px] rounded-lg bg-[#0f7ca7]">
+                    <p
+                      key={index}
+                      className="border-solid text-center px-[10px] rounded-lg bg-[#0f7ca7]"
+                    >
                       {genre.name}
                     </p>
                   );
                 })}
               </div>
 
-
               <div className="flex flex-col gap-10">
                 <div className="grid grid-cols-2 ">
                   <p>{movie.release_date.substring(0, 4)}</p>
                   <p>{movie.runtime} mins</p>
-
                 </div>
                 <div className="flex flex-row gap-5">
                   <button
@@ -249,7 +254,9 @@ const MovieDetails = (props) => {
                 <div className="flex flex-col gap-10">
                   {overview === true &&
                     details === false &&
-                    ratings === false && <p className='w-[75%]'>{movie.details.overview}</p>}
+                    ratings === false && (
+                      <p className="w-[85%]">{movie.details.overview}</p>
+                    )}
 
                   {details === true &&
                     overview === false &&
@@ -259,12 +266,24 @@ const MovieDetails = (props) => {
                     overview === false &&
                     details === false && <MovieDetailsRatings movie={movie} />}
 
-                  <div className='flex flex-col gap-5'>
-
+                  <div className="flex flex-col gap-3">
                     <StarsRating voted={voted} />
-                    
-                    {!voted ? <p>Leave a rating!</p> : <p>Thanks for rating!</p>}
-                    <button disabled={voted} onClick={handleSetVoted}>Submit</button>
+
+                    <div className="flex flex-row gap-5">
+                      {!voted ? (
+                        <p>Leave a rating!</p>
+                      ) : (
+                        <p>Thanks for rating!</p>
+                      )}
+                      {!voted ? (
+                        <button disabled={voted} onClick={handleSetVoted}>
+                          Submit
+                        </button>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+
                   </div>
                   <div className="flex flex-col gap-5">
                     <div className=" flex flex-row gap-10 items-center mt-5">
@@ -293,8 +312,7 @@ const MovieDetails = (props) => {
           <FavouritesList favourites={favourites} removeFavourite={removeFavourite} addFavourite={addFavourite} />
 
         </div>
-
-      }
+      )}
     </div>
   );
 };
