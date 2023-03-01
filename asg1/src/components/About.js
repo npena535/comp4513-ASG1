@@ -52,6 +52,16 @@ const About = (props) => {
               <p className="text-xl">GitHub</p>
             </div>
           </div>
+          
+        </div>
+        <div className="flex flex-col items-center justify-center gap-2">
+
+          <a
+            href="https://github.com/npena535/comp4513-ASG1"
+            target="_blank"
+            rel="noreferrer"
+            > Click Here for Source Code</a>
+
         </div>
       </div>
 
@@ -59,7 +69,8 @@ const About = (props) => {
         <p className="text-3xl">Meet the developers!</p>
 
         <div className="flex flex-row gap-5">
-          <img src={TaylorRobot} className="h-[250px] w-[300px]" />
+          <img src={TaylorRobot} className="h-[250px] w-[300px]" 
+          alt="Robot"/>
           <div className="flex flex-col p-4 bg-[rgb(23,52,109)] gap-3 w-[24vw] h-[20vh] justify-center rounded-md shadow-[-11px_10px_1px_4px_rgba(20,163,219,0.74)] text-white">
             <div className="flex flex-row gap-5">
               <p className="text-3xl">Taylor A.</p>
@@ -108,7 +119,8 @@ const About = (props) => {
               loop
             />
           </div>
-          <img src={NateRobot} className="h-[376px] w-[300px]" />
+          <img src={NateRobot} className="h-[376px] w-[300px]" 
+          alt="Robot"/>
         </div>
       </div>
     </div>

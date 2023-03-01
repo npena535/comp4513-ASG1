@@ -46,7 +46,6 @@ function App() {
 
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
       <Route path="/moviedetails" element={<MovieDetails movieData={movieData} />} />
       <Route path="/default" element={<Default movieData={movieData} />} />
       <Route path="/stars" element={<StarsRating />} />
