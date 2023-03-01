@@ -293,7 +293,7 @@ const MovieDetails = (props) => {
                     details === false && <MovieDetailsRatings movie={movie} />}
 
                   <div className="flex flex-col gap-3">
-                    <StarsRating voted={voted} />
+                    <StarsRating voted={voted} id={movie.id} />
 
                     <div className="flex flex-row gap-5">
                       {!voted ? (

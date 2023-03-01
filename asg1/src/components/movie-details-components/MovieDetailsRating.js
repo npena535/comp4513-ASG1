@@ -7,7 +7,7 @@ const MovieDetailsRatings = (props) => {
     <div className="flex flex-col gap-5">
       <div className="grid grid-cols-2">
         <p>Popularity</p>
-        <p>{props.movie.ratings.popularity}</p>
+        <p>{Math.round(props.movie.ratings.popularity * 10) / 10}</p>
       </div>
       <div className="grid grid-cols-2">
         <p>Average</p>

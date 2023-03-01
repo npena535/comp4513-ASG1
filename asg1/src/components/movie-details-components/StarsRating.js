@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Reference for the stars rating component
 // https://www.youtube.com/watch?v=eDw46GYAIDQ
@@ -9,6 +9,7 @@ import React, { useState } from "react";
 const StarsRating = (props) => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+
 
   return (
     <div className="flex flex-row gap-1">

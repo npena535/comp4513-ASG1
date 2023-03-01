@@ -39,7 +39,7 @@ const MovieListItem = (props) => {
       <div className='group justify-start m-3 relative transition duration-200 hover:scale-[105%]'>
 
         <img className='shadow-2xl shadow-gray-900 rounded-md h-[513px]' src={`https://image.tmdb.org/t/p/w342${props.movie.poster}`} onError={generateErrorImg} alt={`${props.movie.title} poster`} />
-        <div className='flex absolute items-center rounded-md justify-center bg-black/80 transition ease-in duration-200 w-full p-[20px] bottom-0 opacity-0 group-hover:opacity-100 group-hover:z-10'>
+        <div className='flex absolute items-center rounded-md justify-left bg-black/80 transition ease-in duration-200 w-full p-[20px] bottom-0 opacity-0 group-hover:opacity-100 group-hover:z-10'>
           <div className="ml-4 text-white">
             <h2 className="font-semibold text-lg">{props.movie.title}</h2>
             <p className="text-sm ">{props.movie.release_date.substring(0, 4)}</p>
