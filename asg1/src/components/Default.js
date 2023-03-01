@@ -225,6 +225,7 @@ const Default = (props) => {
             addFavourite={addFavourite}
             removeFavourite={removeFavourite}
             favourites={favourites}
+            sortMovies={sortMovies}
           />
 
         </div>

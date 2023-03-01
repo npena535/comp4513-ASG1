@@ -45,6 +45,7 @@ const MovieList = (props) => {
   const sortByTitleDesc = () => {
     setTitleAsc(!titleAsc);
     props.sortMovies('title', -1);
+    console.log('title desc');
   }
 
 
