@@ -6,9 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-
-      },
+      backgroundImage:{
+        heroIMG: "url('bg/BG.jpg')"
+      }
     },
   },
   screens: {
@@ -19,5 +19,6 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss'),
+    require('tailwind-scrollbar')
   ]
 }

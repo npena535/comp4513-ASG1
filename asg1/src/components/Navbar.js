@@ -1,38 +1,101 @@
-import React, { useState } from 'react';
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import logo from "./logos/LogoV5Final.png";
+import ReactModal from "react-modal";
+import About from "./About.js";
+// import { Squash as Hamburger } from 'hamburger-react'
 
-const Navbar = () => {
-    const [nav, setNav] = useState(false);
+const Navbar = (props) => {
+  const [isOpen, setOpen] = useState(false);
 
-    const handleNav = () => {
-        setNav(!nav);
+  const location = useLocation();
+
+  const [isHome, setHome] = useState(false);
+  const [isDefault, setDefault] = useState(false);
+  const [isMovieDetails, setMovieDetails] = useState(false);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const setModalOpenTrue = () => {
+    setModalOpen(true);
+  };
+
+  const setModalOpenFalse = () => {
+    setModalOpen(false);
+  };
+
+  function getListOfLinks() {
+    if (isOpen) {
+      return "absolute bg-[#0f7ca7] w-full left-0 top-[45px] h-[calc(100vh-45px)] z-50";
+    } else {
+      return "hidden sm:block";
     }
+  }
 
-    return (
-        <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white">
-            <h1 className="w-full text-3xl font-bold text-[#00DF9A]">REACT.</h1>
-            <ul className="hidden md:flex text-black">
-                <li className="p-4">Home</li>
-                <li className="p-4">Company</li>
-                <li className="p-4">Resources</li>
-                <li className="p-4">About</li>
-                <li className="p-4">Contact</li>
-            </ul>
-            <div onClick={handleNav} className='block md:hidden'>
-                {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-            </div>
-            <div className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' : 'fixed left-[-100%]'}>
-                <h1 className="w-full text-3xl font-bold text-[#00DF9A] m-4">REACT.</h1>
-                <ul className='p-4 uppercase'>
-                    <li className="p-4 border-b border-gray-600">Home</li>
-                    <li className="p-4 border-b border-gray-600">Company</li>
-                    <li className="p-4 border-b border-gray-600">Resources</li>
-                    <li className="p-4 border-b border-gray-600">About</li>
-                    <li className="p-4">Contact</li>
-                </ul>
-            </div>
-        </div>
-    )
-}
+  useEffect(() => {
+    location.pathname === "/" ? setHome(true) : setHome(false);
+    location.pathname === "/default" ? setDefault(true) : setDefault(false);
+    location.pathname === "/movieDetails"
+      ? setMovieDetails(true)
+      : setMovieDetails(false);
+
+    function handleResize() {
+      setOpen(false);
+    }
+    window.addEventListener("resize", handleResize);
+  }, [location]);
+
+  return (
+    <nav
+      className="realtive top-0 z-10 w-full bg-gradient-to-r from-[#2588af] via-[#0f7ca7]
+        to-[#016a98] h-[50px] px-4 flex justify-between align-middle"
+    >
+      <div className="h-[50px] flex flex-row items-center justify-center">
+        <Link to="/">
+          <img className="w-[265px] h-[90px] pb-[5px]" src={logo} alt="logo" />
+        </Link>
+
+        <ReactModal
+          style={{
+            overlay: {
+              backgroundColor: "rgba(0,0,0,0.8)",
+            },
+          }}
+          isOpen={modalOpen}
+          onRequestClose={setModalOpenFalse}
+          ariaHideApp={false}
+        >
+          <About />
+        </ReactModal>
+      </div>
+      <div className={"z-10 h-[50px] " + getListOfLinks()}>
+        <ul className="h-[50px] p-3 flex flex-row gap-5">
+          <Link to="/">
+            <li
+              className={
+                "block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " +
+                (isHome ? "underline font-semibold" : "")
+              }
+            >
+              Home
+            </li>
+          </Link>
+          <Link to="/default">
+            <li
+              className={
+                "block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " +
+                (isDefault ? "underline font-semibold" : "")
+              }
+            >
+              Search
+            </li>
+          </Link>
+          <button className="text-white" onClick={setModalOpenTrue}>
+            About Us
+          </button>
+        </ul>
+      </div>
+    </nav>
+  );
+};
 
 export default Navbar;
