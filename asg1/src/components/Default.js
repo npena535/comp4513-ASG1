@@ -4,7 +4,7 @@ import Navbar from "./Navbar.js";
 import MovieFilter from "./MovieFilter.js";
 import FavouritesList from "./FavouritesList.js";
 import { useSearchParams } from "react-router-dom";
-import BG from "../bg/default.jpg";
+
 
 const Default = (props) => {
   const [searchParms, setSearchParms] = useSearchParams();
@@ -201,7 +201,7 @@ const Default = (props) => {
   }
 
   return (
-    <div className="w-full h-full bg-white animate-[wiggle_2s_ease-in-out]">
+    <div className="w-full h-[95vh] bg-white animate-[wiggle_2s_ease-in-out]">
       <Navbar />
       <div className="grid grid-cols-4 grid-rows-1">
 
@@ -226,6 +226,8 @@ const Default = (props) => {
             removeFavourite={removeFavourite}
             favourites={favourites}
             sortMovies={sortMovies}
+            showFaves={showFaves}
+            handleShowFaves={handleShowFaves}
           />
 
         </div>
@@ -240,8 +242,6 @@ const Default = (props) => {
             favourites={favourites}
             removeFavourite={removeFavourite}
             addFavourite={addFavourite}
-            showFaves={showFaves}
-            handleShowFaves={handleShowFaves}
           />
         </div>
       </div>

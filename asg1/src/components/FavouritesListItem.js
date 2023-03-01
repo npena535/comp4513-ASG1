@@ -1,9 +1,6 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { AiFillHeart } from "react-icons/ai";
-
-import { Link } from 'react-router-dom';
-import Heart from '../animated-components/Heart';
 import { useNavigate } from 'react-router-dom';
 
 

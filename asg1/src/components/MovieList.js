@@ -5,10 +5,10 @@ import MovieListItem from './MovieListItem';
 const MovieList = (props) => {
   const movies = props.movies;
 
-  const [titleAsc, setTitleAsc] = useState(true);
-  const [yearAsc, setYearAsc] = useState(true);
-  const [ratingAsc, setRatingAsc] = useState(true);
-  const [popularityAsc, setPopularityAsc] = useState(true);
+  const [titleAsc, setTitleAsc] = useState(false);
+  const [yearAsc, setYearAsc] = useState(false);
+  const [ratingAsc, setRatingAsc] = useState(false);
+  const [popularityAsc, setPopularityAsc] = useState(false);
 
 
 
@@ -63,54 +63,77 @@ const MovieList = (props) => {
           <p className='text-2xl'>No movies found</p>
           <p className='text-xl'>Try searching for something else</p>
         </div>}
-        {movies.length >= 1 && <div>
+        {movies.length >= 1 && <div className='pt-5'>
           <p className='text-2xl px-[50px] inline'>Search Results: </p>
 
-          {titleAsc && <button className='text-white bg-gradient-to-r from-teal-400 via-teal-500
-          to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg
-          dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByTitleAsc}>Sort by title ▲</button>
+          {titleAsc && <button className='text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+         to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+        dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByTitleAsc}>Sort by title ▲</button>
           }
 
-          {!titleAsc && <button className='text-white bg-gradient-to-r from-teal-400 via-teal-500
-          to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg
-          dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByTitleDesc}>Sort by title ▼</button>
+          {!titleAsc && <button className='text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+         to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+        dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByTitleDesc}>Sort by title ▼</button>
           }
 
-          {yearAsc && <button className='text-white bg-gradient-to-r from-teal-400 via-teal-500
-          to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg
-          dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByYearAsc}>Sort by year ▲</button>
+          {yearAsc && <button className='text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+         to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+        dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByYearAsc}>Sort by year ▲</button>
           }
 
-          {!yearAsc && <button className='text-white bg-gradient-to-r from-teal-400 via-teal-500
-          to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg
-          dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByYearDesc}>Sort by year ▼</button>
+          {!yearAsc && <button className='text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+         to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+        dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByYearDesc}>Sort by year ▼</button>
           }
 
-          {ratingAsc && <button className='text-white bg-gradient-to-r from-teal-400 via-teal-500
-          to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg
-          dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByRatingAsc}>Sort by rating ▲</button>
+          {ratingAsc && <button className='text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+         to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+        dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByRatingAsc}>Sort by rating ▲</button>
           }
 
-          {!ratingAsc && <button className='text-white bg-gradient-to-r from-teal-400 via-teal-500  
-          to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg
-          dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByRatingDesc}>Sort by rating ▼</button>
+          {!ratingAsc && <button className='text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+         to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+        dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByRatingDesc}>Sort by rating ▼</button>
           }
 
-          {popularityAsc && <button className='text-white bg-gradient-to-r from-teal-400 via-teal-500
-         to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg 
-        dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByPopularityAsc}>Sort by popularity ▲</button>
+          {popularityAsc && <button className='text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+         to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+        dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByPopularityAsc}>Sort by popularity ▲</button>
           }
 
-          {!popularityAsc && <button className='text-white bg-gradient-to-r from-teal-400 via-teal-500
-         to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg 
-        dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByPopularityDesc}>Sort by popularity ▼</button>
+          {!popularityAsc && <button className='text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+         to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+        dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={sortByPopularityDesc}>Sort by popularity ▼</button>
           }
+
+
+          {!props.showFaves && <button
+            onClick={props.handleShowFaves}
+            className="absolute right-5 text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+            to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+           dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          >
+            Show Faves
+          </button>
+          }
+          {props.showFaves && <button
+            onClick={props.handleShowFaves}
+            className="absolute right-5 text-white bg-gradient-to-r from-[#2588AF] via-[#0F7CA7]
+            to-[#016A98] hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#015983] dark:focus:ring-[#016A98] shadow-lg shadow-teal-500/50 dark:shadow-lg 
+           dark:shadow-[#023756] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          >
+            Hide Faves
+          </button>
+          }
+
+
         </div>
         }
 
+
         {/*Scrollbar css reference => https://tailwind-scrollbar-example.adoxography.repl.co/ && https://www.npmjs.com/package/tailwind-scrollbar */}
         {movies.length >= 1 &&
-          <div className='grid grid-cols-3 scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300 overflow-y-auto w-full h-[81.4vh]'>
+          <div className='grid grid-cols-3 scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300 overflow-y-auto w-full h-[77.5vh]'>
 
             {movies.map((movie) => {
               let favourite = false;
