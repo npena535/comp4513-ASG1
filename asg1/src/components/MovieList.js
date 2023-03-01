@@ -4,6 +4,7 @@ import MovieListItem from './MovieListItem';
 
 const MovieList = (props) => {
   const movies = props.movies;
+  let favourite = false;
 
 
   return (
@@ -24,7 +25,12 @@ const MovieList = (props) => {
           <div className='grid grid-cols-3 scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300 overflow-y-auto w-full h-[81.4vh]'>
 
             {movies.map((movie) => {
-              return <MovieListItem movie={movie} addFavourite={props.addFavourite} removeFavourite={props.removeFavourite} />
+              favourite = false;
+              if (props.favourites.includes(movie)) {
+                favourite = true;
+              }
+              return <MovieListItem movie={movie} addFavourite={props.addFavourite} removeFavourite={props.removeFavourite} isFavourite={favourite} />
+              
             })}
           </div>}
 

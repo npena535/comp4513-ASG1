@@ -11,15 +11,21 @@ const MovieListItem = (props) => {
 
   const navigate = useNavigate();
 
-  const handleAddToFavourites = () => {
-    props.addFavourite(props.movie);
-  };
 
   const handleViewMovie = () => {
 
+    navigate(`/movieDetails?id=${props.movie.id}`);
 
 
   };
+
+  const toggleFavourite = () => {
+  if (props.isFavourite)
+    props.removeFavourite(props.movie);
+  else
+    props.addFavourite(props.movie);
+  
+  }
 
   const generateErrorImg = (e) => {
     e.onerror = null;
@@ -50,12 +56,16 @@ const MovieListItem = (props) => {
             Add to Favourites
           </button> */}
           {/* position div in top right of parent using tailwind */}
-          <div className='absolute top-5 right-5'>
-            <Heart movie={props.movie} addFavourite={props.addFavourite} removeFavourite={props.removeFavourite} selected={false} />
+          <div className='absolute top-5 right-5' onClick={toggleFavourite}>
+            {/* <Heart movie={props.movie} addFavourite={props.addFavourite} removeFavourite={props.removeFavourite} selected={props.isFavourite} /> */}
+            {props.isFavourite && <AiFillHeart color='red' size={30} />}
+            {!props.isFavourite && <AiFillHeart color='white' size={30} />}
+
           </div>
 
-          {/* <AiFillHeart color='red' /> */}
-
+          {/* if is favourite red hard */}
+          
+          
         </div>
       </div>
 

@@ -8,12 +8,18 @@ import { useSearchParams } from "react-router-dom";
 import BG from '../bg/default.jpg';
 
 
+
+
 const Default = (props) => {
 
   const [searchParms, setSearchParms] = useSearchParams();
   const [showFaves, setShowFaves] = useState(false);
   const [movies, setMovies] = useState([]);
   const [favourites, setFavourites] = useState([]);
+
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
+
 
 
   const handleShowFaves = () => {
@@ -35,8 +41,11 @@ const Default = (props) => {
     const index = favouritesCopy.indexOf(movie);
     favouritesCopy.splice(index, 1);
     setFavourites(sortByTitle(favouritesCopy));
-    console.log(favourites);
+    // re-render the dom
+    // forceUpdate();
   }
+
+  
 
   useEffect(() => {
     setMovies(sortByTitle(props.movieData));
@@ -122,10 +131,10 @@ const Default = (props) => {
           <MovieFilter onFilterChange={onFilterChange} movies={props.movieData} handleShowFaves={handleShowFaves} showFave={showFaves} /> 
         </div>
         <div className={showFaves ? "col-span-3 row-span-1 overflow-y-auto" : "col-span-4 row-span-1 overflow-y-auto"}>
-          <MovieList movies={movies} addFavourite={addFavourite} removeFavourite={removeFavourite} />
+          <MovieList movies={movies} addFavourite={addFavourite} removeFavourite={removeFavourite} favourites={favourites}  />
         </div>
         <div className={showFaves ? 'col-start-4 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300 transition ease-in-out duration-300' : 'hidden overflow-y-auto '}>
-          <FavouritesList favourites={favourites} removeFavourite={removeFavourite} />
+          <FavouritesList favourites={favourites} removeFavourite={removeFavourite} addFavourite={addFavourite} />
         </div>
       </div>
 

@@ -77,7 +77,6 @@ const MovieDetails = (props) => {
         <AiOutlineLeft />
       </div>
 
-      {console.log(movie)}
       {movie && (
         <div>
           <img
