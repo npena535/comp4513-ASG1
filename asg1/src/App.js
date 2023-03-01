@@ -27,13 +27,14 @@ function App() {
       } else {
 
         // fetch data from the API
-        fetch('https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?limit=200')
+        fetch('https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?limit=300')
           .then(response => response.json())
           .then(data => {
             // set the movie data
             setMovieData(data);
             // save the movie data to local storage
             localStorage.setItem('movieData', JSON.stringify(data));
+            localStorage.setItem('favourites', JSON.stringify([]));
           })
           .catch(error => console.log(error));
       }

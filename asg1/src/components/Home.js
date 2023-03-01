@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Home = (props) => {
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -84,6 +85,7 @@ const Home = (props) => {
           <div className="text-center mt-[-40px]">
             <p className="italic text-gray-500">hero image credit </p>
           </div>
+
         </div>
       ) : (
         <div>Loading...</div>

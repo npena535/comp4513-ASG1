@@ -20,10 +20,14 @@ const MovieListItem = (props) => {
   };
 
   const toggleFavourite = () => {
-  if (props.isFavourite)
+  if (props.isFavourite){
     props.removeFavourite(props.movie);
-  else
+    console.log('removed');
+  }
+  else {
     props.addFavourite(props.movie);
+    console.log('added');
+  }
   
   }
 
@@ -56,7 +60,7 @@ const MovieListItem = (props) => {
             Add to Favourites
           </button> */}
           {/* position div in top right of parent using tailwind */}
-          <div className='absolute top-5 right-5' onClick={toggleFavourite}>
+          <div className='absolute top-5 right-5 hover:scale-[110%]' onClick={toggleFavourite}>
             {/* <Heart movie={props.movie} addFavourite={props.addFavourite} removeFavourite={props.removeFavourite} selected={props.isFavourite} /> */}
             {props.isFavourite && <AiFillHeart color='red' size={30} />}
             {!props.isFavourite && <AiFillHeart color='white' size={30} />}
