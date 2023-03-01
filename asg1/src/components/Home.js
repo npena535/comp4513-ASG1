@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Home = (props) => {
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -54,7 +53,7 @@ const Home = (props) => {
                 You name it, we have it.
               </p>
             </div>
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center gap-5">
               {/* https://tailwindcomponents.com/component/search-input-1 */}
 
               <input
@@ -83,11 +82,13 @@ const Home = (props) => {
           </div>
 
           <div className="text-center mt-[-40px]">
-            <p className="italic text-gray-500">Hero Image by Joanna Kosinska</p>
-            <p className="italic text-gray-500">https://unsplash.com/photos/mjC9apK53a8</p>
-
+            <p className="italic text-gray-500">
+              Hero Image by Joanna Kosinska
+            </p>
+            <p className="italic text-gray-500">
+              https://unsplash.com/photos/mjC9apK53a8
+            </p>
           </div>
-
         </div>
       ) : (
         <div>Loading...</div>
