@@ -1,57 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { Link } from 'react-router-dom';
-import { useSearchParams  } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const MovieFilter = (props) => {
-
-  const [title, setTitle] = useState('');
-  const [genre, setGenre] = useState('');
-  const [minYear, setMinYear] = useState('');
-  const [maxYear, setMaxYear] = useState('');
-  const [minRating, setMinRating] = useState('');
-  const [maxRating, setMaxRating] = useState('');
+  const [title, setTitle] = useState("");
+  const [genre, setGenre] = useState("");
+  const [minYear, setMinYear] = useState("");
+  const [maxYear, setMaxYear] = useState("");
+  const [minRating, setMinRating] = useState("");
+  const [maxRating, setMaxRating] = useState("");
   const [genres, setGenres] = useState([]);
   const [searchParms, setSearchParms] = useSearchParams();
-  const [initialTitle, setInitialTitle] = useState(searchParms.get('title'));
-
-
+  const [initialTitle, setInitialTitle] = useState(searchParms.get("title"));
 
   useEffect(() => {
+    const allGenres = [];
 
-  
-    const allGenres = []
-
-    props.movies.forEach(movie => {
+    props.movies.forEach((movie) => {
       if (movie.details.genres) {
-
-        movie.details.genres.forEach(genre => {
-          if (!allGenres.some(g => g.id === genre.id)) {
+        movie.details.genres.forEach((genre) => {
+          if (!allGenres.some((g) => g.id === genre.id)) {
             allGenres.push(genre);
           }
         });
       }
-
     });
 
     setGenres(allGenres);
-
-
-
   }, [props.movies]);
 
   useEffect(() => {
-    if (searchParms.get('title') && initialTitle !== null) {
+    if (searchParms.get("title") && initialTitle !== null) {
       console.log("setting title");
-      setTitle(searchParms.get('title'));
-      props.onFilterChange({ title: searchParms.get('title') });
+      setTitle(searchParms.get("title"));
+      props.onFilterChange({ title: searchParms.get("title") });
       setTimeout(() => {
         setInitialTitle(null);
       }, 1);
     }
-
-
-
   }, [props, searchParms, initialTitle]);
 
   const handleTitleChange = (event) => {
@@ -66,12 +53,10 @@ const MovieFilter = (props) => {
   };
 
   const handleYearChange = (event) => {
-
     if (event.target.id === "year-filter-min") {
       setMinYear(event.target.value);
       props.onFilterChange({ minYear: event.target.value, maxYear: maxYear });
-    }
-    else if (event.target.id === "year-filter-max") {
+    } else if (event.target.id === "year-filter-max") {
       setMaxYear(event.target.value);
       props.onFilterChange({ minYear: minYear, maxYear: event.target.value });
     }
@@ -80,11 +65,16 @@ const MovieFilter = (props) => {
   const handleRatingChange = (event) => {
     if (event.target.id === "rating-filter-min") {
       setMinRating(event.target.value);
-      props.onFilterChange({ minRating: event.target.value, maxRating: maxRating });
-    }
-    else if (event.target.id === "rating-filter-max") {
+      props.onFilterChange({
+        minRating: event.target.value,
+        maxRating: maxRating,
+      });
+    } else if (event.target.id === "rating-filter-max") {
       setMaxRating(event.target.value);
-      props.onFilterChange({ minRating: minRating, maxRating: event.target.value });
+      props.onFilterChange({
+        minRating: minRating,
+        maxRating: event.target.value,
+      });
     }
   };
 
@@ -112,15 +102,14 @@ const MovieFilter = (props) => {
           onChange={handleGenreChange}
           className="bg-transparent border-b-2 border-black py-2 mr-3 px-2 leading-tight outline-none hover:border-teal-500 duration-300"
         >
-          <option key="" value="">All genres</option>
+          <option key="" value="">
+            All genres
+          </option>
           {genres.map((genre) => (
             <option key={genre.name} value={genre.name}>
               {genre.name}
             </option>
           ))}
-
-
-
         </select>
       </div>
       <div className="flex items-center mb-2 mr-4">
@@ -164,17 +153,23 @@ const MovieFilter = (props) => {
         />
       </div>
 
-          {/* Button CSS https://flowbite.com/docs/components/buttons/ */}
+      {/* Button CSS https://flowbite.com/docs/components/buttons/ */}
       <div>
-        <button onClick={props.handleShowFaves} className='text-white bg-gradient-to-r from-teal-400 via-teal-500
+        {!props.showFave ? (
+          <button
+            onClick={props.handleShowFaves}
+            className="text-white bg-gradient-to-r from-teal-400 via-teal-500
          to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg 
-        dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'>{props.showFave ? <p>Hide Faves</p> : <p>Show Faves</p>}</button>
+        dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          >
+            Show Faves
+          </button>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
-}
-
-
-
+};
 
 export default MovieFilter;

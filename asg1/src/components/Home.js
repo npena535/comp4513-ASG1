@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-
 import Typed from "react-typed";
 import Navbar from "./Navbar";
-import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Home = (props) => {
   const navigate = useNavigate();
