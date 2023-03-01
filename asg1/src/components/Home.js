@@ -14,8 +14,11 @@ const Home = (props) => {
     setSearchTitle(event.target.value);
   };
 
+
+  // when the search button is clicked, navigate to the default page with the search title as a query parameter. 
+  // This is so that we can  filter the movies on the default page. Because the default page is a different route, 
+  // state is not passed between the two pages. 
   const handleSearch = (event) => {
-    // navigate('/default?title=' + searchTitle);
     const params = new URLSearchParams(location.title);
     params.set("title", searchTitle);
     navigate("/default?" + params.toString());
