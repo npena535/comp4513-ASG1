@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "./logos/PWLogoV4.png";
+import logo from "./logos/LogoV5Final.png";
 import ReactModal from "react-modal";
 import About from "./About.js";
 // import { Squash as Hamburger } from 'hamburger-react'
@@ -46,16 +46,12 @@ const Navbar = (props) => {
 
   return (
     <nav
-      className="realtive top-0 z-10 w-full bg-gradient-to-r from-teal-400 via-teal-500
-        to-teal-600 h-[50px] px-4 flex justify-between align-middle"
+      className="realtive top-0 z-10 w-full bg-gradient-to-r from-[#2588af] via-[#0f7ca7]
+        to-[#016a98] h-[50px] px-4 flex justify-between align-middle"
     >
       <div className="h-[50px] flex flex-row items-center justify-center">
         <Link to="/">
-          <img
-            className="w-[225px] h-[120px] pb-[14px]"
-            src={logo}
-            alt="logo"
-          />
+          <img className="w-[265px] h-[90px] pb-[5px]" src={logo} alt="logo" />
         </Link>
 
         <ReactModal
